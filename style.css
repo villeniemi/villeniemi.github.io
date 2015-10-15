@@ -12,24 +12,63 @@ header {
 	text-align: center;
 	position: fixed;
 }
-header a {
-	color: #666;
-}
-main {
+	header a {
+		color: #666;
+	}
+
+
+#list, #view {
     position: fixed;
-    top: 0;
-    left: 0;
-	height: 100%;
+	left: 0;
 	width: 100%;
+	height: 100%;
+}	
+#list {
+    top: -100%;
     display: table;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
+	#list div {
+		display: table-cell;
+		height: 100%;
+		width: 100%;
+		text-align: center;
+		vertical-align: middle;
+	}
 
-main content {
-	display: table-cell;
-	height: 100%;
-	width: 100%;
-	text-align: center;
-	vertical-align: middle;
+#view {
+    top: 100%;
+    display: block;
 }
+
+nav#x {
+    position: fixed;
+    bottom: -3em;
+    width: 100%;
+    padding: 4px 0;
+    left: 0;
+    text-align: center;
+    cursor: pointer;
+    border-top: 1px solid;
+	transition: all 120ms, bottom 300ms 1s;
+	-moz-transition: all 120ms, bottom 300ms 1s;
+	-webkit-transition: all 120ms, bottom 300ms 1s;
+}
+nav#x:hover {
+	background: white;
+	color: black;
+}
+
+/* When stuff's active */
+
+#list, #view {
+	transition: top 600ms ease-out;
+	-moz-transition: top 600ms ease-out;
+	-webkit-transition: top 600ms ease-out;
+}
+
+#list.act, #view.act {
+	top: 0%;
+}
+nav#x.act { bottom: 0; }

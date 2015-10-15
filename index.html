@@ -10,14 +10,15 @@
 	<header>
 		<a href="http://villeniemi.github.io">villeniemi.github.io</a>
 	</header>
-	<main>
-		<content id="list">
-		<a href="hiddenpixel">Hidden Pixel</a>
+		<content id="list" class="act">
+			<div>
+				<a href="hiddenpixel">Hidden Pixel</a>
+			</div>
 		</content>
-		<content id="viewer">
+		<content id="view">
 		
 		</content>
-	</main>
+		<nav id="x">close</nav>
 	</body>
 	
 	<script>
@@ -25,7 +26,13 @@
 		e.preventDefault();
 		var conts = document.URL +'/'+ $(this).attr('href');
 		console.log(conts);
-		$('#viewer').load(conts);
+		$('#view').load(conts);
+		$(this).addClass('act');
+		$('#list, #view, nav#x').toggleClass('act');
+	});
+	$('nav#x').click(function(){
+		$('#list, #view, nav#x').toggleClass('act');
+		$('#view').html(' ');
 	});
 	</script>
 </html>
