@@ -3,3 +3,33 @@ body {
 	color: white;
 	font-family: monospace;
 }
+a {
+	color: white;
+}
+header {
+	z-index: 1;
+	width: 100%;
+	text-align: center;
+	position: fixed;
+}
+header a {
+	color: #666;
+}
+main {
+    position: fixed;
+    top: 0;
+    left: 0;
+	height: 100%;
+	width: 100%;
+    display: table;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+main content {
+	display: table-cell;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	vertical-align: middle;
+}

@@ -3,11 +3,29 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Ville Niemi experiments on GitHub.</title>
-	<link rel="stylesheet" href="src/css.css">
+	<script src="jq.js"></script>
+	<link rel="stylesheet" href="style.css" />
 </head>
 	<body>
-		<content>
+	<header>
+		<a href="http://villeniemi.github.io">villeniemi.github.io</a>
+	</header>
+	<main>
+		<content id="list">
 		<a href="hiddenpixel">Hidden Pixel</a>
 		</content>
+		<content id="viewer">
+		
+		</content>
+	</main>
 	</body>
+	
+	<script>
+	$('#list a').click(function(e){
+		e.preventDefault();
+		var conts = document.URL +'/'+ $(this).attr('href');
+		console.log(conts);
+		$('#viewer').load(conts);
+	});
+	</script>
 </html>
