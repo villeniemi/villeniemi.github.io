@@ -27,7 +27,7 @@
 		var conts = document.URL +'/'+ $(this).attr('href');
 		console.log(conts);
 		if($(this).attr('data-iframe')){
-			$('#view').html('<iframe src='+conts+'>iframe not supported. go <a href="'+conts'+">here</a> instead plz</iframe>');
+			$('#view').html('<iframe src='+conts+'>iframe not supported. go <a href="'+conts+'">here</a> instead plz</iframe>');
 		} else {
 			$('#view').load(conts);
 		}
