@@ -12,7 +12,7 @@
 	</header>
 		<content id="list" class="act">
 			<div>
-				<a href="hiddenpixel">Hidden Pixel</a>
+				<a href="hiddenpixel" data-iframe="true">Hidden Pixel</a>
 			</div>
 		</content>
 		<content id="view">
@@ -26,7 +26,11 @@
 		e.preventDefault();
 		var conts = document.URL +'/'+ $(this).attr('href');
 		console.log(conts);
-		$('#view').load(conts);
+		if($(this).attr('data-iframe')){
+			$('#view').html('<iframe src='+conts+'>iframe not supported. go <a href="'+conts'+">here</a> instead plz</iframe>');
+		} else {
+			$('#view').load(conts);
+		}
 		$(this).addClass('act');
 		$('#list, #view, nav#x').toggleClass('act');
 	});
