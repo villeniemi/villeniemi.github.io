@@ -11,6 +11,7 @@ body {
 	width: 300px;
 	margin-left: -150px;
 	text-align: center;
+	opacity: 0;
 }
 
 #top {
@@ -27,4 +28,80 @@ body {
 #counter {
     display: inline;
 	color: #999;
+}
+
+
+span.seeme{
+	height:1px;
+	width:1px;
+	background-color:white;
+	position: absolute;
+}
+
+span.seeme.fader {
+    animation-name: fader;
+    animation-duration: 4s;
+	animation-iteration-count: infinite;
+}
+@keyframes fader {
+    0% {background-color: black}
+    5% {background-color: white}
+    10% {background-color: black}
+	100% {background-color: black}
+}
+
+.xD, .yD {
+    padding: 0.25em 0.75em;
+    margin: 0.25em;
+}
+
+.vauxhall {
+    animation-name: vauxhall;
+    animation-duration: 500ms;
+	animation-iteration-count: infinite;
+}
+body.vauxhall {
+    animation-name: vauxhallnega;
+}
+span.seeme.vauxhall { opacity: 0.25 }
+@keyframes vauxhall {
+    0% {background-color: black}
+    50% {background-color: white}
+    100% {background-color: black}
+}
+@keyframes vauxhallnega {
+    0% {background-color: white}
+    50% {background-color: black}
+    100% {background-color: white}
+}
+
+
+div#win {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	left: 0%;
+	top: -100%;
+	transition: all 1200ms ease-out;
+	-moz-transition: all 1200ms ease-out;
+	-webkit-transition: all 1200ms ease-out;
+	background: black;
+	text-align: center;
+}
+
+div#win table, div#win tr, div#win td {
+    width: 100%;
+    height: 100%;
+}
+div#win td p {
+    max-width: 40em;
+    margin: auto;
+}
+
+div#win a {
+    color: #93A3FF;
+}
+
+div#win.win {
+	top: 0%;
 }
