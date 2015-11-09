@@ -201,13 +201,13 @@ $(window).mousemove(function(e){
 			}
 	}
 	// If distance is zero aka the pixel is found, act accordingly, aka WIN the level.
-	if(l<levelNames.length){
-		if(e.pageX-pixelPos.left == 0 && e.pageY-pixelPos.top == 0){
-			foundCount++;
-			initPixel(); 
-			levelChange();
+	if(e.pageX-pixelPos.left == 0 && e.pageY-pixelPos.top == 0){
+		if(l!=levelNames.length-1){
 			alert('Found it!\n\nThe next level is called \n\n"'+levelNames[l]+'"');
-		}
+			}
+		foundCount++;
+		initPixel(); 
+		levelChange();
 	}
 });
 	function devWin(){
