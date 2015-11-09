@@ -46,6 +46,10 @@ function initPixel(){
 		top: Math.floor(Math.random()*(winY-20))+20,
 		left: Math.floor(Math.random()*winX),
 	}
+	$('.seeme').css({
+			'left':pixelPos.left,
+			'top':pixelPos.top
+	});
 //	console.log('x:'+pixelPos.left+' y:'+pixelPos.top )
 }
 

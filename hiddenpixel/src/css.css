@@ -63,7 +63,7 @@ span.seeme.fader {
 body.vauxhall {
     animation-name: vauxhallnega;
 }
-span.seeme.vauxhall { opacity: 0.25 }
+span.seeme.vauxhall { opacity: 0.35 }
 @keyframes vauxhall {
     0% {background-color: black}
     50% {background-color: white}
