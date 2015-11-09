@@ -34,8 +34,8 @@ function init(){
 	winY=$(window).height();
 	initPixel();
 	initLevels();
+//	initMenu();
 }
-
 
 // Initiate the hidden pixel.
 function initPixel(){
@@ -53,13 +53,14 @@ function initPixel(){
 //	console.log('x:'+pixelPos.left+' y:'+pixelPos.top )
 }
 
+// Initialise level names in an array
 function initLevels(){
 	levelNames = [
 					"I see you",		// level zero
 					"I see you both",	// level one
 					"I know you",		// level two
 					"I still know you",	// level three
-					"Shine like a star",	// level four
+					"Shine like a star",	// level four, etc...
 					"Maths I",
 					"Maths II",
 					"Hot or Not?", 
@@ -70,6 +71,22 @@ function initLevels(){
 					];
 	levelChange();
 }
+
+// Initialise menu.
+			// (!!!) not used in the game, just to demostrate how to use for loop to initiate one rather easily.
+			// To initialise to see in action, call initMenu() in browser console.
+			function initMenu(){
+				var menuitemLength = levelNames.length; // Count levelname length
+				$('body').append($('<aside id="menu"></aside>'));	// Create menu item
+				for(var i=0;i<menuitemLength;i++){	// Do this as many times as there are levels
+					$('<li onclick="pickLevel('+i+')">º'+i+'</li>').appendTo($('#menu'));
+					// Append an item in the menu, with onclick-function to pickLevel
+				}
+			}
+			function pickLevel(which){
+				foundCount = which; // Set the foundCount as the level picked (this however screws up the actual counter), but the game is designed linear.
+				levelChange();		// Change the level.
+			}
 
 var l;
 function levelChange(){
@@ -115,7 +132,8 @@ function levelChange(){
 			'top':pixelPos.top
 		}).addClass('vauxhall');
 		$('body').addClass('vauxhall');
-	}
+		}
+		else { $('body, .seeme').removeClass('vauxhall'); }
 	if(l==levelNames.length){
 		$('body').animate({'background-color':'#000000'},500,function(){
 			$('body, .seeme').removeClass('vauxhall');

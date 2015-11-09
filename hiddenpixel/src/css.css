@@ -105,3 +105,12 @@ div#win a {
 div#win.win {
 	top: 0%;
 }
+
+#menu {
+    width: 30%;
+}
+#menu li {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0.25em;
+}
