@@ -8,16 +8,9 @@
 **  A game to find pixels on screen, complete waste of time, yet a great way to kill it.
 **  Übersimple technics, set a pixel position and if mouse is at the same spot - congrats.
 **
-**	Version 0.1, initial release
+**	Version 0.5, initial release with difficulty levels
 **
 **	Development ideas:
-**	- levels (difficulty changes)
-**		- easier: the pixel shows
-**		- easier: cold/hot indicator
-**		- harder: no distance meter, only cold/hot
-** 		- harder: the distance toolbar goes hiding if you get close (~5px)
-**		- harder: pixel starts to move / teleport
-**		- harder: annoying graphics come overlaying / strobe mode
 **	- timer
 **		- certain time limit to find pixel
 **		- +20sec from each find
