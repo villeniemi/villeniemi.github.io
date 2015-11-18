@@ -144,7 +144,9 @@ var randPhotoId = response.data[n].id;
 var ts = response.data[n].created_time;
 var td = ts.split("T")[0];
 var timedate = moment(td).format("D.M.YYYY");
-$("#information").text(
+var newEle = $("<p class='feedpost'></p>");
+$("#information").append(newEle);
+$(newEle).append(
  timedate + " hehehehe " + 
  response.data[n].id + " hehehehe " +
  response.data[n].message
