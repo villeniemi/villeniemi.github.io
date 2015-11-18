@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Facebook Login JavaScript Example</title>
-<meta charset="UTF-8">
+	<title>Ville Niemi experiment - fbCyborgs</title>
+	<meta charset="UTF-8">
+	<script src="script/jq.js"></script>
+	<script src="script/markov.js"></script>
+	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <script>
@@ -92,10 +95,14 @@
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,user_friends,user_hometown,user_likes,user_posts,user_location,user_birthday,user_tagged_places,user_relationships,user_relationship_details,user_work_history" onlogin="checkLoginState();">
+<fb:login-button scope="public_profile,user_friends,user_photos,user_hometown,user_likes,user_posts,user_location,user_birthday,user_tagged_places,user_relationships,user_relationship_details,user_work_history" onlogin="checkLoginState();">
 </fb:login-button>
 
 <div id="status">
+</div>
+
+<div id="information">
+
 </div>
 
 </body>
