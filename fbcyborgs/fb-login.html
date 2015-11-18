@@ -108,6 +108,7 @@
 <script>
 /* initialise likes */
 var likes;
+$(function(){
 	FB.api(
 		"/me/likes",
 		function (response) {
@@ -116,10 +117,11 @@ var likes;
 			}
 		}
 	);
+});
 
 /* make the API call */
 function randomlike(){
-	var n = Math.floor(Math.random()*likes.data.length);
+	var n = Math.floor(Math.random()*likes.length);
 	$("#information").text(likes[n]);
 }
 </script>
