@@ -125,6 +125,7 @@ function initArtwork(){
 		"/me/feed",
 		{
         "filter": "app_2915120374"
+		// Status updates
 		},
 		function (response) {
 		  if (response && !response.error) {
@@ -136,23 +137,39 @@ function initArtwork(){
 		"/me/feed",
     {
         "filter": "app_2305272732"
+		// app_2305272732 - Photos
     },
 		function (response) {
 		  if (response && !response.error) {
-	var n = Math.floor(Math.random()*response.data.length);
-var randPhotoId = response.data[n].id;
-var ts = response.data[n].created_time;
-var td = ts.split("T")[0];
-var timedate = moment(td).format("Do MMMM");
-var newEle = $("<p class='feedpost'></p>");
-$("#information").append(newEle);
-$(newEle).append(
- timedate + " <br> " + 
- response.data[n].id + "  <br>  " +
- response.data[n].message
-);
-// $("#information").text(randPhotoId);
-// $("#information").text(response.data[n].message);
+			var n = Math.floor(Math.random()*response.data.length);
+			var randPhotoId = response.data[n].id;
+			var randPhotoURL;
+			/* make the API call for picture field */
+				FB.api(
+					"/"+randPhotoId+"?fields=picture",
+					function (response) {
+					if (response && !response.error) {
+						/* handle the result */
+						console.log( response.picture );
+						var randPhotoURL = response.picture;
+					  }
+					}
+				);
+
+			var ts = response.data[n].created_time;
+			var td = ts.split("T")[0];
+			var timedate = moment(td).format("Do MMMM");
+			var newEle = $("<p class='feedpost'></p>");
+			$("#information").append(newEle);
+			$(newEle).append(
+				// response.data[n].story + "  <br>  " +
+				 timedate + " <br> " + 
+				 response.data[n].id + "  <br>  " +
+				 "<img src='"+randPhotoURL+"' class='fetchphoto' />" +
+				 response.data[n].message
+			);
+			// $("#information").text(randPhotoId);
+			// $("#information").text(response.data[n].message);
 
 			}
 		}
