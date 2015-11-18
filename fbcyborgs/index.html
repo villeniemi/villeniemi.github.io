@@ -7,15 +7,39 @@
 	<script src="script/markov.js"></script>
 	<link rel="stylesheet" href="style.css" />
 </head>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1710220295879442',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 	<body>
-		<content>
+		<content id="content">
 		
 		</content>
 	</body>
 	
 	<script>
+		function writeMarkov(){
 		var text = "Call me Ishmael.  Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.";
-		var markov = new Markov(text, 3);
-		console.log(markov.generateText(100));
+		var markov = new Markov(text, 4);
+		var gene = markov.generateText(100);
+		console.log(gene);
+		$("#content").text(gene);
+		}
+		$(function(){
+			writeMarkov();
+		});
 	</script>
 </html>
