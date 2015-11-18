@@ -110,6 +110,8 @@
 
 <script>
 var likes,feed;
+var randPhotoURL;
+
 function initArtwork(){
 	/* make the API call to initialise likes (last 25?) */
 	FB.api(
@@ -142,9 +144,8 @@ function initArtwork(){
 		function (response) {
 		  if (response && !response.error) {
 			var n = Math.floor(Math.random()*response.data.length);
-			var randPhotoId = response.data[n].id;
-			var randPhotoURL;
 			/* make the API call for picture field */
+			var randPhotoId = response.data[n].id;
 				FB.api(
 					"/"+randPhotoId+"?fields=picture",
 					function (response) {
