@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<script src="script/jq.js"></script>
 	<script src="script/markov.js"></script>
-	<script src="script/moment.min.js"></script>
+	<script src="script/moment.js"></script>
 	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -143,12 +143,12 @@ function initArtwork(){
 var randPhotoId = response.data[n].id;
 var ts = response.data[n].created_time;
 var td = ts.split("T")[0];
-var timedate = moment(td).format("D.M.YYYY");
+var timedate = moment(td).format("Do MMMM");
 var newEle = $("<p class='feedpost'></p>");
 $("#information").append(newEle);
 $(newEle).append(
- timedate + " hehehehe " + 
- response.data[n].id + " hehehehe " +
+ timedate + " <br> " + 
+ response.data[n].id + "  <br>  " +
  response.data[n].message
 );
 // $("#information").text(randPhotoId);
