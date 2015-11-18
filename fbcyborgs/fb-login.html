@@ -105,5 +105,24 @@
 
 </div>
 
+<script>
+/* initialise likes */
+var likes;
+	FB.api(
+		"/me/likes",
+		function (response) {
+		  if (response && !response.error) {
+			likes = response.data;
+			}
+		}
+	);
+
+/* make the API call */
+function randomlike(){
+	var n = Math.floor(Math.random()*likes.data.length);
+	$("#information").text(likes[n]);
+}
+</script>
+
 </body>
 </html>
