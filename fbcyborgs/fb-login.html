@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<script src="script/jq.js"></script>
 	<script src="script/markov.js"></script>
+	<script src="script/moment.min.js"></script>
 	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -20,6 +21,7 @@
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       testAPI();
+	  initArtwork();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -86,6 +88,7 @@
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
     });
+	
   }
 </script>
 
@@ -106,9 +109,9 @@
 </div>
 
 <script>
-/* initialise likes */
-var likes;
-$(function(){
+var likes,feed;
+function initArtwork(){
+	/* make the API call to initialise likes (last 25?) */
 	FB.api(
 		"/me/likes",
 		function (response) {
@@ -117,9 +120,46 @@ $(function(){
 			}
 		}
 	);
-});
+	/* make the API call to initialise feed (last 25?) */
+	FB.api(
+		"/me/feed",
+		{
+        "filter": "app_2915120374"
+		},
+		function (response) {
+		  if (response && !response.error) {
+			feed = response.data;
+			}
+		}
+	);
+		FB.api(
+		"/me/feed",
+    {
+        "filter": "app_2305272732"
+    },
+		function (response) {
+		  if (response && !response.error) {
+	var n = Math.floor(Math.random()*response.data.length);
+var randPhotoId = response.data[n].id;
+var ts = response.data[n].created_time;
+var td = ts.split("T")[0];
+var timedate = moment(td).format("D.M.YYYY");
+$("#information").text(
+ timedate + " hehehehe " + 
+ response.data[n].id + " hehehehe " +
+ response.data[n].message
+);
+// $("#information").text(randPhotoId);
+// $("#information").text(response.data[n].message);
 
-/* make the API call */
+			}
+		}
+	);
+
+}
+
+
+/* initialise likes */
 function randomlike(){
 	var n = Math.floor(Math.random()*likes.length);
 	$("#information").text(likes[n]);
@@ -128,3 +168,37 @@ function randomlike(){
 
 </body>
 </html>
+
+<script>
+/* EXAMPLES AND TRYOUTS OF API LOOKUPS
+
+	// Find the last post with location and filter its message
+	FB.api(
+		"/me/feed",
+    {
+        "with": "location"
+    },
+		function (response) {
+		  if (response && !response.error) {
+			var post = response.data;
+			console.log(post[0].message);
+			}
+		}
+	);
+	
+	// Just news feed
+		FB.api(
+		"/me/feed",
+    {
+        "filter": "app_2915120374"
+    },
+		function (response) {
+		  if (response && !response.error) {
+			var n = Math.floor(Math.random()*response.data.length);
+			console.log(response.data[n]);
+			}
+		}
+	);
+
+*/
+</script>
