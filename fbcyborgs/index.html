@@ -2,41 +2,20 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Ville Niemi experiments on GitHub.</title>
-	<script src="jq.js"></script>
+	<title>Ville Niemi experiment - fbCyborg.</title>
+	<script src="script/jq.js"></script>
+	<script src="script/markov.js"></script>
 	<link rel="stylesheet" href="style.css" />
 </head>
 	<body>
-	<header>
-		<a href="http://villeniemi.github.io">villeniemi.github.io</a>
-	</header>
-		<content id="list" class="act">
-			<div>
-				<sup>1</sup> <a href="hiddenpixel" data-iframe="true">Hidden Pixel</a>
-			</div>
-		</content>
-		<content id="view">
+		<content>
 		
 		</content>
-		<nav id="x">close</nav>
 	</body>
 	
 	<script>
-	$('#list a').click(function(e){
-		e.preventDefault();
-		var conts = document.URL +'/'+ $(this).attr('href');
-		console.log(conts);
-		if($(this).attr('data-iframe')){
-			$('#view').html('<iframe src='+conts+'>iframe not supported. go <a href="'+conts+'">here</a> instead plz</iframe>');
-		} else {
-			$('#view').load(conts);
-		}
-		$(this).addClass('act');
-		$('#list, #view, nav#x').toggleClass('act');
-	});
-	$('nav#x').click(function(){
-		$('#list, #view, nav#x').toggleClass('act');
-		$('#view').html(' ');
-	});
+		var text = "Call me Ishmael.  Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.";
+		var markov = new Markov(text, 3);
+		console.log(markov.generateText(100));
 	</script>
 </html>
