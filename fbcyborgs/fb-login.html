@@ -147,7 +147,13 @@ function initArtwork(){
 function drawLikes(){
 	$(likes).each(function(){
 	console.log( this.name );
-	var a = $('<p><span class="name">'+this.created_time'+</span><span class="name">'+this.name'+</span></p>');
+	var ts = response.data[n].created_time;
+			var td = ts.split("T")[0];
+			var timedate = moment(td).format("dddd Do MMMM");
+			var th = ts.split("T")[1];
+			var timehours = moment(td).format("hh:mm:ss");
+			
+	var a = $('<p><span class="date">'+timedate+'</span> <span class="date">'+timehours+'</span> <span class="name">'+this.name+'</span></p>');
 	$('#likescanvas').append(a);
 	});
 }
