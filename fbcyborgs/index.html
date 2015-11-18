@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Ville Niemi experiments on GitHub.</title>
+	<script src="jq.js"></script>
+	<link rel="stylesheet" href="style.css" />
+</head>
+	<body>
+	<header>
+		<a href="http://villeniemi.github.io">villeniemi.github.io</a>
+	</header>
+		<content id="list" class="act">
+			<div>
+				<sup>1</sup> <a href="hiddenpixel" data-iframe="true">Hidden Pixel</a>
+			</div>
+		</content>
+		<content id="view">
+		
+		</content>
+		<nav id="x">close</nav>
+	</body>
+	
+	<script>
+	$('#list a').click(function(e){
+		e.preventDefault();
+		var conts = document.URL +'/'+ $(this).attr('href');
+		console.log(conts);
+		if($(this).attr('data-iframe')){
+			$('#view').html('<iframe src='+conts+'>iframe not supported. go <a href="'+conts+'">here</a> instead plz</iframe>');
+		} else {
+			$('#view').load(conts);
+		}
+		$(this).addClass('act');
+		$('#list, #view, nav#x').toggleClass('act');
+	});
+	$('nav#x').click(function(){
+		$('#list, #view, nav#x').toggleClass('act');
+		$('#view').html(' ');
+	});
+	</script>
+</html>
