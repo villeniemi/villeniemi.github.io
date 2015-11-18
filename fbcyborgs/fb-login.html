@@ -104,78 +104,52 @@
 <div id="status">
 </div>
 
-<div id="information">
+<content id="information">
+
+</content>
+
+<div id="robot">
 
 </div>
 
+<content id="likescanvas">
+
+</content>
+
 <script>
+
+// Initialise global variables
 var likes,feed;
-var randPhotoURL, randPhotoId;
 
 function initArtwork(){
-	/* make the API call to initialise likes (last 25?) */
+	/* make the API call to initialise likes*/
 	FB.api(
-		"/me/likes",
+		"/me/likes?limit=80",
 		function (response) {
 		  if (response && !response.error) {
 			likes = response.data;
 			}
 		}
 	);
-	/* make the API call to initialise feed (last 25?) */
+	
+//	me/feed?fields=picture,comments,story,created_time
+
 	FB.api(
-		"/me/feed",
-		{
-        "filter": "app_2915120374"
-		// Status updates
-		},
-		function (response) {
-		  if (response && !response.error) {
-			feed = response.data;
+		"/me/feed?fields=picture,comments,story,created_time",
+		function (response){
+			if (response && !response.error) {
+				feed = response.data;
 			}
 		}
 	);
-		FB.api(
-		"/me/feed",
-    {
-        "filter": "app_2305272732"
-		// app_2305272732 - Photos
-    },
-		function (response) {
-		  if (response && !response.error) {
-			var n = Math.floor(Math.random()*response.data.length);
-			/* make the API call for picture field */
-			randPhotoId = response.data[n].id;
-				FB.api(
-					"/"+randPhotoId+"?fields=picture",
-					function (response) {
-					if (response && !response.error) {
-						/* handle the result */
-						console.log( response.picture );
-						var randPhotoURL = response.picture;
-					  }
-					}
-				);
+}
 
-			var ts = response.data[n].created_time;
-			var td = ts.split("T")[0];
-			var timedate = moment(td).format("Do MMMM");
-			var newEle = $("<p class='feedpost'></p>");
-			$("#information").append(newEle);
-			$(newEle).append(
-				// response.data[n].story + "  <br>  " +
-				 timedate + " <br> " + 
-				 response.data[n].id + "  <br>  " +
-				 "<img src='"+randPhotoURL+"' class='fetchphoto' />" +
-				 response.data[n].message
-			);
-			// $("#information").text(randPhotoId);
-			// $("#information").text(response.data[n].message);
-
-			}
-		}
-	);
-
+function drawLikes(){
+	$(likes).each(function(){
+	console.log( this.name );
+	var a = $('<p><span class="name">'+this.created_time'+</span><span class="name">'+this.name'+</span></p>');
+	$('#likescanvas').append(a);
+	});
 }
 
 
@@ -184,6 +158,11 @@ function randomlike(){
 	var n = Math.floor(Math.random()*likes.length);
 	$("#information").text(likes[n]);
 }
+
+$(function(){
+	drawLikes();
+});
+
 </script>
 
 </body>
@@ -220,5 +199,62 @@ function randomlike(){
 		}
 	);
 
+	
+	
+var randPhotoURL, randPhotoId;
+			FB.api(
+		"/me/feed",
+    {
+        "filter": "app_2305272732"
+		// app_2305272732 - Photos
+    },
+		function (response) {
+		  if (response && !response.error) {
+			var n = Math.floor(Math.random()*response.data.length);
+			/* make the API call for picture field *
+			randPhotoId = response.data[n].id;
+				FB.api(
+					"/"+randPhotoId+"?fields=picture",
+					function (response) {
+					if (response && !response.error) {
+						/* handle the result *
+						console.log( response.picture );
+						var randPhotoURL = response.picture;
+					  }
+					}
+				);
+
+			var ts = response.data[n].created_time;
+			var td = ts.split("T")[0];
+			var timedate = moment(td).format("Do MMMM");
+			var newEle = $("<p class='feedpost'></p>");
+			$("#information").append(newEle);
+			$(newEle).append(
+				// response.data[n].story + "  <br>  " +
+				 timedate + " <br> " + 
+				 response.data[n].id + "  <br>  " +
+				 "<img src='"+randPhotoURL+"' class='fetchphoto' />" +
+				 response.data[n].message
+			);
+			// $("#information").text(randPhotoId);
+			// $("#information").text(response.data[n].message);
+
+			}
+		}
+	);
 */
+/* make the API call to initialise feed (last 25?) 
+	FB.api(
+		"/me/feed",
+		{
+        "filter": "app_2915120374"
+		// Status updates
+		},
+		function (response) {
+		  if (response && !response.error) {
+			feed = response.data;
+			}
+		}
+	);
+	*/
 </script>
